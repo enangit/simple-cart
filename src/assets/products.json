@@ -1,0 +1,34 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "watch 1",
+            "imageSrc": "watch-1.png",
+            "price": "2150.00"
+        },
+        {
+            "id": 2,
+            "name": "watch 2",
+            "imageSrc": "watch-2.png",
+            "price": "3550.00"
+        },
+        {
+            "id": 3,
+            "name": "watch 3",
+            "imageSrc": "watch-3.png",
+            "price": "2500.90"
+        },
+        {
+            "id": 4,
+            "name": "watch 4",
+            "imageSrc": "watch-4.png",
+            "price": "1230.50"
+        },
+        {
+            "id": 5,
+            "name": "watch 5",
+            "imageSrc": "watch-5.png",
+            "price": "4210.00"
+        }
+    ]
+}
