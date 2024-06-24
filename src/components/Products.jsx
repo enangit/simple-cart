@@ -2,16 +2,14 @@ import { products } from "../assets/products.json";
 import "./Products.css";
 import { formatter } from "../utils/utils.js";
 import { cartReducers } from "../store/index.js";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 const Products = () => {
     const dispatch = useDispatch();
-    const items = useSelector(state => state.items);
 
     function handleAddItem(product) {
         dispatch(cartReducers.addItem(product));
     }
 
-    console.log(items);
     return (
         <article className="products">
             {

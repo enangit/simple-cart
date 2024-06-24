@@ -5,10 +5,11 @@ import { cartReducers } from './store';
 import "./App.css";
 import Products from './components/Products';
 import { formatter } from './utils/utils';
+import Header from './components/Header';
 
 function App() {
     const isShowing = useSelector(state => state.cartIsShown);
-    const cartItemNumbers = useSelector(state => state.items?.length) || 0;
+    const cartItemNumbers = useSelector(state => state.totalQuantity);
     const cartItems = useSelector(state => state.items) || [];
     const dispatch = useDispatch();
 
@@ -22,53 +23,48 @@ function App() {
         dispatch(cartReducers.removeItem(id));
     }
 
-    function handleIncrease(id) {
-        dispatch(cartReducers.increaseItem(id));
+    function handleIncrease(item) {
+        dispatch(cartReducers.addItem(item));
     }
 
     return (
         <>
-            <button
-                onClick={handleCart}
-                data-items-number={cartItemNumbers}
-                id='cart-button'>
-                Show Cart
-            </button>
+            <Header />
             <Modal open={isShowing}>
                 <div className="cart">
                     <h1>Your Cart</h1>
                     {cartItemNumbers > 0 &&
                         <div className="content">
-                            <ul className="cart-items">
+                            <ul className="cart__items">
                                 {
                                     cartItems && cartItems.map(item => {
                                         return (
-                                            <li className='cart-item' key={item.id}>
-                                                <span>{item.name}</span>
-                                                <div className="actions">
-                                                    <button className="decrease" onClick={() => { handleDecrease(item.id) }}>
+                                            <li className='cart__item' key={item.id}>
+                                                <span className='cart__item__name'>{item.name}</span>
+                                                <span className='cart__item__price'>
+                                                    {formatter.format(item.totalPrice)}
+                                                </span>
+                                                <div className="cart__item__actions">
+                                                    <button className="button action__decrease" onClick={() => { handleDecrease(item.id) }}>
                                                         -
                                                     </button>
-                                                    <span>x{item.quantity}</span>
-                                                    <button className="increase" onClick={() => { handleIncrease(item.id) }}>
+                                                    <span className='cart__item__quantity'>{item.quantity}</span>
+                                                    <button className="button action__increase" onClick={() => { handleIncrease(item) }}>
                                                         +
                                                     </button>
                                                 </div>
-                                                <span>
-                                                    {formatter.format(item.totalPrice)}
-                                                </span>
                                             </li>
                                         );
                                     })
                                 }
                             </ul>
 
-                            <p className='cart__total__price'>Your total: {formatter.format(TOTAL)}</p>
+                            <p className='cart__total__price'>Total: {formatter.format(TOTAL)}</p>
                         </div>
                     }
                     {!cartItems && <p>You have no item.</p>}
                     <button
-                        className='cart__close__button'
+                        className='button cart__close__button'
                         onClick={handleCart}>
                         close
                     </button>

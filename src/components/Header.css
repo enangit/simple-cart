@@ -1,0 +1,42 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 7.2rem;
+    padding-inline: 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.nav__links {
+    display: flex;
+    gap: 3.2rem;
+}
+
+.cart__button {
+    position: relative;
+    width: 2.2rem;
+    height: 2.2rem;
+}
+
+.cart__button::before {
+    position: absolute;
+    content: attr(data-items-number);
+    top: -.6rem;
+    right: -1.4rem;
+    margin-inline-end: .5rem;
+    height: auto;
+    width: fit-content;
+    color: white;
+    background: red;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+
+    display: grid;
+    place-items: center;
+}
+
+.cart__button svg {
+    margin: auto;
+}
